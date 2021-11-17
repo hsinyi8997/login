@@ -1,1 +1,22 @@
-<h1>this is index page with handlebars</h1>
+<div class="container">
+  <div class="column">
+    <h1>Account Login</h1>
+    <form action="/login" method="post">
+      <label for="email">Email address</label>
+      <input type="email" id="email" name="email" value="{{ email }}" style="display: block;">
+      {{#if wrongEmail}}
+      <div>
+        <p style="color: red;">Cannot find this email account, please try it again!</p>
+      </div>
+      {{/if}}
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" value="{{ password }}" style="display: block;">
+      {{#if wrongPassword}}
+      <div>
+        <p style="color: red;">Wrong password, please try it again!</p>
+      </div>
+      {{/if}}
+      <button type="submit">Sign in</button>
+    </form>
+  </div>
+</div>
