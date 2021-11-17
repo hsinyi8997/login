@@ -1,22 +1,53 @@
 <div class="container">
   <div class="column">
-    <h1>Account Login</h1>
-    <form action="/login" method="post">
-      <label for="email">Email address</label>
-      <input type="email" id="email" name="email" value="{{ email }}" style="display: block;">
-      {{#if wrongEmail}}
-      <div>
-        <p style="color: red;">Cannot find this email account, please try it again!</p>
+    <h2>Account Login</h2>
+    <form action="/login" method="post" class="needs-validation" novalidate>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" value="{{ email }}" style="display: block;" required>
+        <div class="invalid-feedback">
+          Please input your e-mail.
+        </div>
+        {{#if wrongEmail}}
+        <div>
+          <p style="color: red;">Cannot find this email account, please try it again!</p>
+        </div>
+        {{/if}}
       </div>
-      {{/if}}
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" value="{{ password }}" style="display: block;">
-      {{#if wrongPassword}}
-      <div>
-        <p style="color: red;">Wrong password, please try it again!</p>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" value="{{ password }}" style="display: block;" required>
+        <div class="invalid-feedback">
+          Please input your password.
+        </div>
+        {{#if wrongPassword}}
+        <div>
+          <p style="color: red;">Wrong password, please try it again!</p>
+        </div>
+        {{/if}}
+        <button type="submit" class="btn btn-secondary mt-3">Sign in</button>
       </div>
-      {{/if}}
-      <button type="submit">Sign in</button>
     </form>
   </div>
 </div>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
